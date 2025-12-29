@@ -1,15 +1,15 @@
+import { errorResponse, successResponse } from "@/lib/api-response";
 import { db } from "@/lib/db";
 import { sql } from "drizzle-orm";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     // Running a simple query to check if the database is reachable
     await db.execute(sql`SELECT 1 AS "hello"`);
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return successResponse({ ok: true });
   } catch (error) {
     console.error("Health check failed: ", error);
-    return NextResponse.json({ ok: false }, { status: 500 });
+    return errorResponse("Internal server error", 500);
   }
 }

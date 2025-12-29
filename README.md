@@ -4,6 +4,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle-0.45.1-green?logo=drizzle)](https://orm.drizzle.team/)
 [![Neon](https://img.shields.io/badge/Neon-Database-purple?logo=postgresql)](https://neon.tech/)
+[![pnpm](https://img.shields.io/badge/pnpm-9.0-orange?logo=pnpm)](https://pnpm.io/)
 
 > A lightweight, fast pastebin service with expiration and view limits
 
@@ -30,7 +31,7 @@ git clone <your-repo-url>
 cd pastebin-lite
 
 # Install dependencies
-npm install
+pnpm install
 
 # Set up environment variables
 cp .env.example .env
@@ -47,7 +48,7 @@ TEST_MODE=0  # Set to 1 for testing with custom timestamps
 ### Run Development Server
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Visit `http://localhost:3000`
@@ -71,7 +72,7 @@ Content-Type: application/json
 ```json
 {
   "id": "uuid-here",
-  "shareableUrl": "https://yourapp.com/pastes/uuid-here"
+  "shareableUrl": "https://yourapp.com/api/pastes/uuid-here"
 }
 ```
 
@@ -85,8 +86,8 @@ GET /api/pastes/{id}
 ```json
 {
   "content": "Your paste content",
-  "remainingViews": 9,
-  "expiresAt": "2024-01-01T12:00:00Z"
+  "remaining_views": 9,
+  "expires_at": "2024-01-01T12:00:00Z"
 }
 ```
 
@@ -167,23 +168,10 @@ CREATE TABLE pastes (
 
 ```bash
 # Install Vercel CLI
-npm i -g vercel
+pnpm add -g vercel
 
 # Deploy
 vercel --prod
-```
-
-### Docker
-
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-RUN npm run build
-EXPOSE 3000
-CMD ["npm", "start"]
 ```
 
 ## 🤝 Contributing
