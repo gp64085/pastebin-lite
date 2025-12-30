@@ -17,5 +17,5 @@ export function generateShareableUrl(
 ): string {
   const host = request.headers.get("host") || "localhost:3000";
   const protocol = host.includes("localhost") ? "http" : "https";
-  return `${protocol}://${host}/api/pastes/${pasteId}`;
+  return `${protocol}://${host}/p/${pasteId}`;
 }

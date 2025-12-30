@@ -58,9 +58,9 @@ export async function POST(request: Request) {
       .returning({ id: pastes.id });
 
     // Construct the shareable URL
-    const shareableUrl = generateShareableUrl(request, inserted.id);
+    const url = generateShareableUrl(request, inserted.id);
 
-    return successResponse({ id: inserted.id, shareableUrl }, 201);
+    return successResponse({ id: inserted.id, url }, 201);
   } catch (error) {
     console.error("Error creating paste:", error);
     return errorResponse("Internal server error", 500);
